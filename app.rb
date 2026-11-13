@@ -28,6 +28,7 @@ rescue SafPlatform::InputError => e
   exit 1
 rescue SystemCallError => e
   warn "System error: #{e.message}"
+  exit 1
 end
 
 execute
