@@ -28,6 +28,12 @@ Or provide input through standard input:
 printf '2 book at 12.49\n1 music CD at 14.99\n 1 chocolate bar at 0.85\n' | docker run --rm -i sales-tax
 ```
 
+### Run tests
+
+```sh
+docker run --rm --entrypoint bundle sales-tax exec rspec
+```
+
 ## Run Locally
 
 Install dependencies:
@@ -56,11 +62,10 @@ ruby app.rb <<'BASKET'
 BASKET
 ```
 
-
-## Run tests with Docker
+### Run tests
 
 ```sh
-docker run --rm --entrypoint bundle sales-tax exec rspec
+bundle exec rspec
 ```
 
 ## Assumptions
@@ -68,3 +73,4 @@ docker run --rm --entrypoint bundle sales-tax exec rspec
 - Products that are not included in the catalog require a category for being processed (e.g.: `1 apple [food] at 2.34`)
 - A provided category overrides the product's catalog category (Supported categories are `book`, `food`, `medical`, and `other`)
 - A product is considered imported if its name contains the word `imported`.
+- For multiple baskets, separate them with a blank line. Each basket produces a separate output/receipt.
